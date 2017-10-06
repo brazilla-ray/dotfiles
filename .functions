@@ -225,6 +225,9 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
+# Converts a hex color value to 0-255 color index
+# for use in setting bash colors.
+# From https://unix.stackexchange.com/a/269085
 fromhex(){
     hex=${1#"#"}
     r=$(printf '0x%0.2s' "$hex")
