@@ -35,3 +35,8 @@ fish/fish_history
 
 # random
 shilocation
+
+# emacs autosave
+\#*
+\#.*#
+.#*
