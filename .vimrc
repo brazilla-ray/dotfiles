@@ -15,6 +15,32 @@ set textwidth=80
 " ___ MAPPINGS, etc. ___________________________________________________________ 
 
 
+" _________ general ____________________________________________________________ 
+
+" enter normal mode from insert mode
+inoremap jk <esc>
+" disable the <esc> key
+inoremap <esc> <nop>
+" disable the arrow keys in normal mode
+nnoremap <up> <nop>
+nnoremap <right> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+" and in insert mode
+inoremap <up> <nop>
+inoremap <right> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+
+" _________ moving around ______________________________________________________ 
+
+" moves to the beginning of the current line.
+" overwrites the default mapping of 'H' which moves to the first line.
+nnoremap H 0
+" moves to the end of the current line.
+" overwrites the default mapping of 'L' which moves to the last line.
+nnoremap L $
+
 " _________ leaders ____________________________________________________________ 
 
 let mapleader = "," 
@@ -66,5 +92,6 @@ nnoremap <leader>ec :echo "ohai!"<cr>
 " comments?
 " copies a line and pastes it below the current one, offset by 9 spaces.
 nnoremap <leader>9 Vyp0i         <esc>
+
 " _________________________________________________________________ mappings ___
 " ==============================================================================
