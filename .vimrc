@@ -84,8 +84,11 @@ nnoremap <leader><c-u> viwU<esc>
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " surround current word with single quotes
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+" surround currentt selection with double quotes
+vnoremap <leader>" y`<i"<esc>`>a"<esc>
+" surround currentt selection with single quotes
+vnoremap <leader>' y`<i'<esc>`>a'<esc>
 
-" dummy mapping
 " ________ dummy mappings _____________________________________________________ 
 nnoremap <leader>ec :echo "ohai!"<cr>
 " another dummy mapping, but maybe useful?
