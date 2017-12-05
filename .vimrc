@@ -9,56 +9,62 @@ set nocompatible
 syntax on
 colorscheme badwolf
 
-
+set textwidth=80
+ 
 " ==============================================================================
 " ___ MAPPINGS, etc. ___________________________________________________________ 
 
+
 " _________ leaders ____________________________________________________________ 
+
 let mapleader = "," 
 let maplocalleader = "\\"
 
-" _________ vimrc editing ______________________________________________________ 
-" _______________ open ~/.vimrc in a vertical split_____________________________ 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-" _______________ source ~/.vimrc ______________________________________________ 
-nnoremap <leader>sv :source $MYVIMRC<cr>
-" _______________ select the current line, delete it, then paste it below. _____ 
-nnoremap <leader>- Vdp
-" _______________ same as above, but pastes it above the current line.__________ 
-nnoremap <leader>_ VdkP
-" _______________ in insert mode, make current word UPPERCASE __________________ 
-inoremap <leader><c-u> <esc>vawUi
-" _______________ do the same THING in normal mode _____________________________ 
-nnoremap <leader><c-u> viwU<esc>
-" _______________ surround current line with empty lines _______________________ 
-" put an empty line before and after the current line
 
+" _________ vimrc editing ______________________________________________________ 
+
+" open ~/.vimrc in a vertical split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" source ~/.vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" _______________ comments _____________________________________________________ 
+
+" comment opening
+nnoremap <leader>cmt o" <esc>78a=<esc>a<cr>"  <esc>3i_<esc>a <esc>74a_<esc>bR
+" comment sub-section 
+nnoremap <leader>2mt o"  <esc>9i_<esc>a <esc>68a_<esc>bR
+" comment sub-sub-section
+nnoremap <leader>3mt o"  <esc>15i_<esc>a <esc>62a_<esc>bR
+" comment closing 
+nnoremap <leader>tmc o" <esc>78a_<esc>o" <esc>78a=<esc>k$3h
+
+" _________ moving lines around ________________________________________________ 
+
+" select the current line, delete it, then paste it below.
+nnoremap <leader>- Vdp
+" same as above, but pastes it above the current line.
+nnoremap <leader>_ VdkP
+" surround current line with empty lines
 nnoremap <leader><c-o> O<esc>jo<esc>
 
+" _________ text manipulation __________________________________________________ 
+
+" in insert mode, make current word UPPERCASE
+inoremap <leader><c-u> <esc>vawUi
+" do the same THING in normal mode
+nnoremap <leader><c-u> viwU<esc>
+" surround current word with double quotes
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+" surround current word with single quotes
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
 " dummy mapping
+" ________ dummy mappings _____________________________________________________ 
 nnoremap <leader>ec :echo "ohai!"<cr>
 " another dummy mapping, but maybe useful?
 " comments?
 " copies a line and pastes it below the current one, offset by 9 spaces.
 nnoremap <leader>9 Vyp0i         <esc>
-
-"  
+" _________________________________________________________________ mappings ___
 " ==============================================================================
-" ___ COMMENTS _________________________________________________________________ 
-
-" _______________ comment opening ______________________________________________ 
-nnoremap <leader>cmt o" <esc>78a=<esc>a<cr>"  <esc>3i_<esc>a <esc>74a_<esc>bR
-" _______________ comment sub-section __________________________________________ 
-nnoremap <leader>2mt o"  <esc>9i_<esc>a <esc>68a_<esc>bR
-" _______________ comment text _________________________________________________ 
-nnoremap <leader>cx o"  <esc>15i_<esc>a <esc>62a_<esc>bR
-" _______________ comment closing_______________________________________________ 
-nnoremap <leader>tmc o" <esc>78a_<esc>k0i
-" ______________________________________________________________________________
-
-
-" ==============================================================================
-" ___ ABBREVIATIONS ____________________________________________________________ 
-
-iabbrev @@ william@mrwilliamwhitaker.com
-" ______________________________________________________________________________
