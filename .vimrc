@@ -1,15 +1,20 @@
-" it really does make vim more useful:
-         " it really does make vim more useful:
-" 	even though having a vimrc turns compatible off,
-"	there are times, like when using -u to launch vim,
-"	when it's helpful to set this explicitly.
 
+" ==============================================================================
+" ___ GENERAL __________________________________________________________________ 
+" it really does make vim more useful:
+" even though having a vimrc turns compatible off,
+" there are times, like when using -u to launch vim,
+" when it's helpful to set this explicitly.
 set nocompatible
 
 syntax on
 colorscheme badwolf
 
 set textwidth=80
+" adds a menu to tab completion
+set wildmenu
+set number
+set cursorline
  
 " ==============================================================================
 " ___ MAPPINGS, etc. ___________________________________________________________ 
