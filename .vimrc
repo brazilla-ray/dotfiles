@@ -18,6 +18,7 @@ set textwidth=80
 " _________ general ____________________________________________________________ 
 
 " enter normal mode from insert mode
+" enter normal mode from insert
 inoremap jk <esc>
 " disable the <esc> key
 inoremap <esc> <nop>
