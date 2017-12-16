@@ -114,6 +114,22 @@ vnoremap <leader>" y`<i"<esc>`>a"<esc>
 " surround currentt selection with single quotes
 vnoremap <leader>' y`<i'<esc>`>a'<esc>
 
+" _________ operator pending mappings
+
+" _______________ parentheses
+
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+onoremap an( :<c-u>normal! f(va(<cr>
+onoremap al( :<c-u>normal! F)va(<cr>
+
+" _______________ curly brackets
+
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap il{ :<c-u>normal! F}vi{<cr>
+onoremap an{ :<c-u>normal! f{va{<cr>
+onoremap al{ :<c-u>normal! F}va{<cr>
+ 
 " ________ dummy mappings 
 
 nnoremap <leader>ec :echo "ohai!"<cr>
@@ -138,6 +154,7 @@ augroup filetype_javascript
 augroup END
 
 augroup filetype_yaml
+        autocmd!
         autocmd FileType yaml setlocal lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
         autocmd FileType yaml setlocal list
         autocmd FileType yaml setlocal number
@@ -145,20 +162,38 @@ augroup filetype_yaml
         autocmd FileType yaml nnoremap <buffer> <localleader>c I#<esc>
 augroup END
 
-" _________ snippets
- 
-autocmd FileType javascript iabbrev <buffer> fcn function () {
-                        \<cr>
-                        \<cr>
-                        \}
-
-autocmd FileType html iabbrev <buffer> doctype <!DOCTYPE html>
-
-" _________ groups
-
 augroup filetype_html
         autocmd!
         autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup END
+
+augroup filetype_markdown
+        autocmd!
+        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+        autocmd FileType markdown onoremap <buffer> ht
+                                \ :<c-u>execute "normal!
+                                \ ?^[-=]\\{2,}$\r:nohlsearch\rkvg_"<cr>
+        autocmd FileType markdown onoremap <buffer> hg
+                                \ :<c-u>execute "normal!
+                                \ ?^[-=]\\{2,}$\r:nohlsearch\rg_vk0"<cr>
+augroup END
+
+" _________ snippets
+ 
+augroup snippets_javascript
+        autocmd!
+        autocmd FileType javascript iabbrev <buffer> fcn function () {
+                                \<cr>
+                                \<cr>
+                                \}
+augroup END
+
+augroup snippets_html
+        autocmd!
+        autocmd FileType html iabbrev <buffer> doctype <!DOCTYPE html>
+augroup END
+
+" _________ groups
+
 
 " AUTOCOMMANDS }}} 
