@@ -38,6 +38,29 @@ set expandtab
 " adds a menu to tab completion
 set wildmenu
  
+" _________ statusline
+" by default, statusline is only shown when there are two or more windows 
+" setting it to '2' always shows the statusline
+set laststatus=2
+" show the file name
+set statusline=%f
+" add a space
+set statusline+=\ 
+" flags; modified, read-only
+set statusline+=%(%m%r%)
+" add a space
+set statusline+=\ 
+" show filetype
+set statusline+=%y
+" switch to right side of statusline
+set statusline+=%=
+" show column position
+set statusline+=%c
+" add a space
+set statusline+=\ 
+" show current line/total lines in file
+set statusline+=[%04l\/%04L]
+
 " EDITOR }}} 
 
 " {{{ MAPPINGS 
