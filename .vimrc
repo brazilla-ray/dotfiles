@@ -30,7 +30,7 @@ syntax on
 if &term =~ '256color'
 	set t_ut=
 endif
-set background=dark
+let &background = 'dark'
 colorscheme pink-moon
 filetype plugin indent on
 set tabstop=2
@@ -42,16 +42,16 @@ set wildmenu
 " by default, statusline is only shown when there are two or more windows 
 " setting it to '2' always shows the statusline
 set laststatus=2
-" show the file name
+" show the file's relative path
 set statusline=%f
-" add a space
-set statusline+=\ 
-" flags; modified, read-only
-set statusline+=%(%m%r%)
 " add a space
 set statusline+=\ 
 " show filetype
 set statusline+=%y
+" add a space
+set statusline+=\ 
+" flags; modified, read-only
+set statusline+=%(%m%r%)
 " switch to right side of statusline
 set statusline+=%=
 " show column position
@@ -216,7 +216,13 @@ augroup snippets_html
         autocmd FileType html iabbrev <buffer> doctype <!DOCTYPE html>
 augroup END
 
-" _________ groups
+" _________ folding
+" Vimscript file settings ---------- {{{
+augroup filetype_vim
+        autocmd!
+        autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
 
 
 " AUTOCOMMANDS }}} 
