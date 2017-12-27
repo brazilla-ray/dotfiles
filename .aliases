@@ -9,10 +9,15 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/development"
+alias dot="cd ~/projects/dotfiles"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
+alias h="history"
+alias j="jobs"
+
+# git in here you
 alias g="git"
 # from here, ...
 alias gss="git status"
@@ -20,9 +25,11 @@ alias glog="git log -g"
 alias gaa="git add -A"
 alias gcmsg="git commit -m"
 # ...to here, is most of what I do in git,
-# in this order. Function? 
-alias h="history"
-alias j="jobs"
+# in this order. Function?
+alias gco="git checkout"
+
+# docker docker
+alias domi="docker-machine"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
