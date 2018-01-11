@@ -16,6 +16,7 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias h="history"
 alias j="jobs"
+alias t="todo.sh -N -d ~/.todo.cfg"
 
 # git in here you
 alias g="git"

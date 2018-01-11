@@ -65,6 +65,13 @@ set statusline+=[%04l\/%04L]
 
 " {{{ MAPPINGS 
 
+" _________ leaders 
+
+let mapleader = "," 
+let maplocalleader = "\\"
+
+" _________ editor
+ 
 " enter normal mode from insert mode
 " enter normal mode from insert
 inoremap jk <esc>
@@ -81,6 +88,9 @@ inoremap <right> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 
+" switches to next buffer
+nnoremap <leader>L :bnext<cr>
+
 " _________ moving around
 
 " moves to the beginning of the current line.
@@ -89,12 +99,6 @@ nnoremap H 0
 " moves to the end of the current line.
 " overwrites the default mapping of 'L' which moves to the last line.
 nnoremap L $
-
-" _________ leaders 
-
-let mapleader = "," 
-let maplocalleader = "\\"
-
 
 " _________ vimrc editing 
 
@@ -117,9 +121,9 @@ nnoremap <leader>tmc o"  <esc>3i}<esc>3ha <esc>i
 " _________ moving lines around 
 
 " select the current line, delete it, then paste it below.
-nnoremap <leader>- Vdp
+nnoremap <leader>_ Vdp
 " same as above, but pastes it above the current line.
-nnoremap <leader>_ VdkP
+nnoremap <leader>- VdkP
 " surround current line with empty lines
 nnoremap <leader><c-o> O<esc>jo<esc>
 
