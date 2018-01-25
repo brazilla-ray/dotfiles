@@ -34,7 +34,10 @@ let &background = 'dark'
 colorscheme pink-moon
 filetype plugin indent on
 set tabstop=2
+set softtabstop=0
 set expandtab
+set shiftwidth=2
+set smarttab
 " adds a menu to tab completion
 set wildmenu
  
