@@ -32,3 +32,7 @@ export MANPAGER='less -X';
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);
+# Make sure ssh-agent is replaced by gpg-agent.
+# For Mac with Yubikey. May cause problems elsewhere; if statement?
+export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+gpgconf --launch gpg-agent
