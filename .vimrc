@@ -2,9 +2,9 @@
 " _________ ensure vim-plug is installed 
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -flo ~/.vim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent !curl -flo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " _________ the plugins
@@ -13,6 +13,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'sts10/vim-pink-moon'
 Plug 'sjl/badwolf'
 Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'elzr/vim-json'
+Plug 'mattn/emmet-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'posva/vim-vue'
+Plug 'jelera/vim-javascript-syntax'
 call plug#end()
 
 " VIM-PLUG }}} 
@@ -28,10 +35,11 @@ set nocompatible
 syntax on
 " necessary for correct rendering in tmux
 if &term =~ '256color'
-	set t_ut=
+  set t_ut=
 endif
-let &background = 'dark'
-colorscheme pink-moon
+"let &background = 'dark'
+let g:seoul256_background=233
+colorscheme seoul256 
 filetype plugin indent on
 set tabstop=2
 set softtabstop=0
@@ -40,7 +48,7 @@ set shiftwidth=2
 set smarttab
 " adds a menu to tab completion
 set wildmenu
- 
+
 " _________ statusline
 " by default, statusline is only shown when there are two or more windows 
 " setting it to '2' always shows the statusline
@@ -55,6 +63,8 @@ set statusline+=%y
 set statusline+=\ 
 " flags; modified, read-only
 set statusline+=%(%m%r%)
+" show the format options
+set statusline+=[%{&fo}]
 " switch to right side of statusline
 set statusline+=%=
 " show column position
@@ -74,7 +84,7 @@ let mapleader = ","
 let maplocalleader = "\\"
 
 " _________ editor
- 
+
 " enter normal mode from insert mode
 " enter normal mode from insert
 inoremap jk <esc>
@@ -102,6 +112,10 @@ nnoremap H 0
 " moves to the end of the current line.
 " overwrites the default mapping of 'L' which moves to the last line.
 nnoremap L $
+" switch to next tab (forward)
+nnoremap <leader>f gt
+" switch to previous tab (reverse)
+nnoremap <leader>r gT
 
 " _________ vimrc editing 
 
@@ -129,6 +143,8 @@ nnoremap <leader>_ Vdp
 nnoremap <leader>- VdkP
 " surround current line with empty lines
 nnoremap <leader><c-o> O<esc>jo<esc>
+" increase indent level
+nnoremap <a-]> 0i<tab><esc>
 
 " ________ text manipulation 
 
@@ -140,9 +156,9 @@ nnoremap <leader><c-u> viwU<esc>
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " surround current word with single quotes
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-" surround currentt selection with double quotes
+" surround current selection with double quotes
 vnoremap <leader>" y`<i"<esc>`>a"<esc>
-" surround currentt selection with single quotes
+" surround current selection with single quotes
 vnoremap <leader>' y`<i'<esc>`>a'<esc>
 
 " _________ operator pending mappings
@@ -160,7 +176,7 @@ onoremap in{ :<c-u>normal! f{vi{<cr>
 onoremap il{ :<c-u>normal! F}vi{<cr>
 onoremap an{ :<c-u>normal! f{va{<cr>
 onoremap al{ :<c-u>normal! F}va{<cr>
- 
+
 " ________ dummy mappings 
 
 nnoremap <leader>ec :echo "ohai!"<cr>
@@ -173,64 +189,86 @@ nnoremap <leader>9 Vyp0i         <esc>
 
 " {{{ AUTOCOMMANDS
 
+" _________ general
+
+augroup warning_strip
+  autocmd!
+  autocmd BufRead * highlight OverLength ctermbg=DarkGray
+  autocmd BufRead * match Overlength /\%80v.*/
+augroup END
+
 " _________ filetype
- 
-augroup filetype_javascript
-        autocmd!
-        autocmd FileType javascript setlocal lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-        autocmd FileType javascript setlocal list
-        autocmd FileType javascript setlocal number
-        autocmd FileType javascript setlocal relativenumber
-        autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+
+augroup javascript_libs
+  autocmd!
+  autocmd BufReadPre *.js let b:javascript_lib_use_vue = 1
 augroup END
 
-augroup filetype_yaml
-        autocmd!
-        autocmd FileType yaml setlocal lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-        autocmd FileType yaml setlocal list
-        autocmd FileType yaml setlocal number
-        autocmd FileType yaml setlocal relativenumber
-        autocmd FileType yaml nnoremap <buffer> <localleader>c I#<esc>
-augroup END
+  augroup filetype_javascript
+    autocmd!
+    autocmd FileType javascript setlocal lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+    autocmd FileType javascript setlocal list
+    autocmd FileType javascript setlocal number
+    autocmd FileType javascript setlocal relativenumber
+    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+  augroup END
 
-augroup filetype_html
-        autocmd!
-        autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
-augroup END
+  augroup filetype_yaml
+    autocmd!
+    autocmd FileType yaml setlocal lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+    autocmd FileType yaml setlocal list
+    autocmd FileType yaml setlocal number
+    autocmd FileType yaml setlocal relativenumber
+    autocmd FileType yaml nnoremap <buffer> <localleader>c I#<esc>
+  augroup END
 
-augroup filetype_markdown
-        autocmd!
-        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-        autocmd FileType markdown onoremap <buffer> ht
-                                \ :<c-u>execute "normal!
-                                \ ?^[-=]\\{2,}$\r:nohlsearch\rkvg_"<cr>
-        autocmd FileType markdown onoremap <buffer> hg
-                                \ :<c-u>execute "normal!
-                                \ ?^[-=]\\{2,}$\r:nohlsearch\rg_vk0"<cr>
-augroup END
+  augroup filetype_html
+    autocmd!
+    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+  augroup END
 
-" _________ snippets
- 
-augroup snippets_javascript
-        autocmd!
-        autocmd FileType javascript iabbrev <buffer> fcn function () {
-                                \<cr>
-                                \<cr>
-                                \}
-augroup END
+  augroup filetype_markdown
+    autocmd!
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    autocmd FileType markdown onoremap <buffer> ht
+          \ :<c-u>execute "normal!
+          \ ?^[-=]\\{2,}$\r:nohlsearch\rkvg_"<cr>
+    autocmd FileType markdown onoremap <buffer> hg
+          \ :<c-u>execute "normal!
+          \ ?^[-=]\\{2,}$\r:nohlsearch\rg_vk0"<cr>
+  augroup END
 
-augroup snippets_html
-        autocmd!
-        autocmd FileType html iabbrev <buffer> doctype <!DOCTYPE html>
-augroup END
+  augroup filetype_vue
+    autocmd!
+    autocmd FileType vue setlocal lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+    autocmd FileType vue setlocal list
+    autocmd FileType vue setlocal number
+    autocmd FileType vue setlocal relativenumber
+    autocmd FileType vue nnoremap <buffer> <localleader>c 0i//<esc>
+  augroup END
 
-" _________ folding
-" Vimscript file settings ---------- {{{
-augroup filetype_vim
-        autocmd!
-        autocmd FileType vim setlocal foldmethod=marker
-augroup END
-" }}}
+  " _________ snippets
+
+  augroup snippets_javascript
+    autocmd!
+    autocmd FileType javascript iabbrev <buffer> fcn function () {
+          \<cr>
+          \<cr>
+          \}
+  augroup END
+
+  augroup snippets_html
+    autocmd!
+    autocmd FileType html iabbrev <buffer> doctype <!DOCTYPE html>
+  augroup END
+
+  " _________ folding
+  " Vimscript file settings ---------- {{{
+  augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+  augroup END
+  " }}}
 
 
-" AUTOCOMMANDS }}} 
+  " AUTOCOMMANDS }}} 

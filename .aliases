@@ -17,6 +17,9 @@ alias p="cd ~/projects"
 alias h="history"
 alias j="jobs"
 alias t="todo.sh -N -d ~/.todo.cfg"
+# In ~/.functions you'll find "mkd", which adds movement into the newly 
+# created directory.
+alias md="mkdir -p"
 
 # git in here you
 alias g="git"
