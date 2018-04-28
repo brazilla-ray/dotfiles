@@ -121,7 +121,7 @@ nnoremap <left> <nop>
 "inoremap <up> <nop>
 "inoremap <right> <nop>
 "inoremap <down> <nop>
-"inoremap <left> <nop>
+"inoremap <left> <nop> 
 
 " switches to next buffer
 "nnoremap <leader>L :bnext<cr>
@@ -184,6 +184,8 @@ nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 vnoremap <leader>" y`<i"<esc>`>a"<esc>
 " surround current selection with single quotes
 vnoremap <leader>' y`<i'<esc>`>a'<esc>
+" replace charecter under the cursor with a '.'
+nnoremap <leader>. s.<esc>2w<esc>
 
 " _________ operator pending mappings
 
@@ -246,10 +248,8 @@ augroup filetype_javascript
   autocmd FileType javascript setlocal list
   autocmd FileType javascript setlocal number
   autocmd FileType javascript setlocal relativenumber
+  autocmd FileType javascript setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\s*//'
   autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-  autocmd FileType javascript inoremap <buffer> { {}<esc>i
-  autocmd FileType javascript inoremap <buffer> ( ()<esc>i
-  autocmd FileType javascript inoremap <buffer> [ []<esc>i
 augroup END
 
 augroup filetype_yaml
