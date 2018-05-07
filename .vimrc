@@ -22,7 +22,6 @@ Plug 'posva/vim-vue'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'scrooloose/nerdtree'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'raimondi/delimitmate'
 
 call plug#end()
 
@@ -63,9 +62,9 @@ set wildmenu
 " eol (line breaks),
 " start (start of insert)
 set backspace=indent,eol,start
-" turns \Delimitmate\ off by default;
-" use ':DelimitMateSwitch' to toggle
-let delimitMate_offByDefault = 1
+" open splits to the right or below
+set splitright
+set splitbelow
 
 " _________ statusline
 " by default, statusline is only shown when there are two or more windows
@@ -134,6 +133,11 @@ nnoremap H 0
 " moves to the end of the current line.
 " overwrites the default mapping of 'L' which moves to the last line.
 nnoremap L $
+" puts the cursor on a new line in between two braces, tags, etc., with a
+" tab
+inoremap <leader>j <cr><esc>O
+" moves the cursor outside parentheses, etc.
+inoremap <leader>l <esc>ea
 " switch to next buffer (forward)
 nnoremap <leader>f :bnext<cr>
 " switch to previous tab (reverse)
@@ -165,17 +169,21 @@ nnoremap <leader>_ Vdp
 nnoremap <leader>- VdkP
 " surround current line with empty lines
 nnoremap <leader><c-o> O<esc>jo<esc>
-" copy current line, paste it below, move to end of line, end in visual mode
-nnoremap <leader>oo 0Vyp$v
+" copy current line, paste it below, move to end of line 
+nnoremap <leader>oo 0Vyp$
 " increase indent level
 nnoremap <a-]> 0i<tab><esc>
 
 " ________ text manipulation
 
 " in insert mode, make current word UPPERCASE
-inoremap <leader><c-u> <esc>vawUi
+inoremap <leader>U <esc>vawUi
+" ditto, but lowercase
+inoremap <leader>u <esc>vawui
 " do the same THING in normal mode
-nnoremap <leader><c-u> viwU<esc>
+nnoremap <leader>U viwU<esc>
+" ditto, but lowercase
+nnoremap <leader>u viwu<esc>
 " surround current word with double quotes
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " surround current word with single quotes
