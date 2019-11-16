@@ -7,6 +7,9 @@
 .vim/undo
 .*.swp
 
+# ignore vim plugins
+
+.vim/plugged/**
 # git credential file
 .gitconfig.local
 

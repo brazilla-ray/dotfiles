@@ -1,0 +1,28 @@
+source ~/.vim/keymaps.vim
+source ~/.vim/ultisnips.vim
+source ~/.vim/appearance.vim
+source ~/.vim/latex.vim
+source ~/.vim/css.vim
+source ~/.vim/php.vim
+
+call plug#begin('~/.vim/plugged')
+Plug 'lervag/vimtex'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'SirVer/ultisnips'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sjl/badwolf'
+call plug#end()
+
+syntax on
+filetype plugin indent on
+set textwidth=80
+
+" set the colorscheme
+colo badwolf
+
+" for using wordpress plugin in docker
+" autocmd BufRead,BufNewFile /Volumes/SD256/development/wordpress/**/*.php set filetype=php.wordpress
+let g:wordpress_vim_wordpress_path="/Volumes/SD256/development/wordpress"
