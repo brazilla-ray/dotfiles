@@ -9,7 +9,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/development"
+alias d="cd /Volumes/SD256/development"
 alias dot="cd ~/projects/dotfiles"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
@@ -17,6 +17,8 @@ alias p="cd ~/projects"
 alias h="history"
 alias j="jobs"
 alias t="todo.sh -N -d ~/.todo.cfg"
+#alias vim="nvim"
+#alias vi="nvim"
 # In ~/.functions you'll find "mkd", which adds movement into the newly 
 # created directory.
 alias md="mkdir -p"
@@ -180,3 +182,6 @@ alias reload="exec $SHELL -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Use Universal-Ctags 
+alias ctags="`brew --prefix`/bin/ctags"

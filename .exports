@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
 # Make vim the default editor.
-export EDITOR='vim';
+export EDITOR='neovim';
+export VISUAL='neovim';
+# Speaking of vim, these variables are
+# for vim/neovim compatability.
+export VIMCONFIG=~/.config/nvim
+export VIMDATA=~/.local/share/nvim
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;

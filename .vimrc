@@ -169,7 +169,7 @@ nnoremap <leader>_ Vdp
 nnoremap <leader>- VdkP
 " surround current line with empty lines
 nnoremap <leader><c-o> O<esc>jo<esc>
-" copy current line, paste it below, move to end of line 
+" copy current line, paste it below, move to end of line
 nnoremap <leader>oo 0Vyp$
 " increase indent level
 nnoremap <a-]> 0i<tab><esc>
@@ -243,13 +243,6 @@ augroup javascript_libs
   autocmd BufReadPre *.js let b:javascript_lib_use_vue = 1
 augroup END
 
-" strip whitespace on save for certain filetypes
-augroup strip_whitespace
-  autocmd!
-  autocmd BufRead * EnableWhitespace
-  autocmd FileType javascript,vue EnableStripWhitespaceOnSave
-augroup END
-
 augroup filetype_javascript
   autocmd!
   autocmd FileType javascript setlocal lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
@@ -257,7 +250,7 @@ augroup filetype_javascript
   autocmd FileType javascript setlocal number
   autocmd FileType javascript setlocal relativenumber
   autocmd FileType javascript setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\s*//'
-  autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+  autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>a
 augroup END
 
 augroup filetype_yaml
